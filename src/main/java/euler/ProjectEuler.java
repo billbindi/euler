@@ -7,6 +7,8 @@ import euler.utils.Geometry;
 import euler.utils.NumberStrings;
 import euler.utils.Primes;
 
+import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.stream.LongStream;
 
 public final class ProjectEuler {
@@ -23,7 +25,8 @@ public final class ProjectEuler {
 //        System.out.println(euler9(1000));
 //        System.out.println(euler10(2_000_000));
 //        System.out.println(euler11(Inputs.EULER_11_INPUT, 4));
-        System.out.println(euler12(500));
+//        System.out.println(euler12(500));
+        System.out.println(euler13(Inputs.EULER_13_INPUT, 10));
     }
 
     /**
@@ -235,5 +238,13 @@ public final class ProjectEuler {
             triangle = generator.next();
         }
         return triangle;
+    }
+
+    /**
+     * Find the first {@code n} digits of the sum of the given numbers.
+     */
+    private static String euler13(BigInteger[] numbers, int n) {
+        BigInteger sum = Arrays.stream(numbers).reduce((a, b) -> a.add(b)).get();
+        return sum.toString().substring(0, n);
     }
 }
