@@ -1,14 +1,16 @@
 package euler;
 
 import euler.generators.FibonacciGenerator;
+import euler.utils.NumberStrings;
 import euler.utils.Primes;
 
 public final class ProjectEuler {
 
     public static void main(String[] args) {
-        System.out.println(euler1(1000));
-        System.out.println(euler2(4_000_000));
-        System.out.println(euler3(600851475143L));
+//        System.out.println(euler1(1000));
+//        System.out.println(euler2(4_000_000));
+//        System.out.println(euler3(600851475143L));
+        System.out.println(euler4(3));
     }
 
     /**
@@ -47,5 +49,23 @@ public final class ProjectEuler {
     private static long euler3(long n) {
         long[] factors = Primes.primeFactors(n);
         return factors[factors.length - 1];
+    }
+
+    /**
+     * Find the largest palindrome made from the product of two {@code n}-digit numbers.
+     */
+    private static long euler4(int n) {
+        long max = 0;
+        long lowerBound = (long) Math.pow(10, n - 1);
+        long upperBound = (long) Math.pow(10, n) - 1;
+        for (long i = lowerBound; i <= upperBound; i++) {
+            for (long j = lowerBound; j <= upperBound; j++) {
+                long product = i * j;
+                if (NumberStrings.isPalindrome(product) && product > max) {
+                    max = product;
+                }
+            }
+        }
+        return max;
     }
 }
