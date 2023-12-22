@@ -1,6 +1,7 @@
 package euler;
 
 import euler.generators.FibonacciGenerator;
+import euler.utils.Geometry;
 import euler.utils.NumberStrings;
 import euler.utils.Primes;
 
@@ -37,7 +38,8 @@ public final class ProjectEuler {
 //        System.out.println(euler5(20));
 //        System.out.println(euler6(100));
 //        System.out.println(euler7(10_001));
-        System.out.println(euler8(EULER_8_INPUT, 13));
+//        System.out.println(euler8(EULER_8_INPUT, 13));
+        System.out.println(euler9(1000));
     }
 
     /**
@@ -146,5 +148,20 @@ public final class ProjectEuler {
             }
         }
         return max;
+    }
+
+    /**
+     * Find the product of a Pythagorean triplet for which the sum a + b + c is {@code n}.
+     */
+    private static long euler9(long n) {
+        for (long a = 1; a < n / 2; a++) {
+            for (long b = 1; b < n / 2; b++) {
+                long c = n - a - b;
+                if (Geometry.isPythagoreanTriplet(a, b, c)) {
+                    return a * b * c;
+                }
+            }
+        }
+        throw new IllegalArgumentException("No triplet whose sum is " + n);
     }
 }
