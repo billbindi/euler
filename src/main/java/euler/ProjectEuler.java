@@ -4,6 +4,8 @@ import euler.generators.FibonacciGenerator;
 import euler.utils.NumberStrings;
 import euler.utils.Primes;
 
+import java.util.stream.LongStream;
+
 public final class ProjectEuler {
 
     public static void main(String[] args) {
@@ -11,7 +13,8 @@ public final class ProjectEuler {
 //        System.out.println(euler2(4_000_000));
 //        System.out.println(euler3(600851475143L));
 //        System.out.println(euler4(3));
-        System.out.println(euler5(20));
+//        System.out.println(euler5(20));
+        System.out.println(euler6(100));
     }
 
     /**
@@ -88,5 +91,15 @@ public final class ProjectEuler {
             }
         }
         return ret;
+    }
+
+    /**
+     * Find the difference between the sum of the squares of the first {@code n} natural
+     * numbers and the square of the sum.
+     */
+    private static long euler6(long n) {
+        long sumOfSquares = LongStream.range(1, n + 1).map(l -> l * l).sum();
+        long squareOfSums = (long) Math.pow(LongStream.range(1, n + 1).sum(), 2);
+        return squareOfSums - sumOfSquares;
     }
 }
