@@ -25,6 +25,14 @@ public final class FibonacciGenerator implements SequenceGenerator {
     }
 
     @Override
+    public long peek() {
+        if (count == 0) {
+            throw new IllegalStateException("Cannot peek before running.");
+        }
+        return prev;
+    }
+
+    @Override
     public long count() {
         return count;
     }

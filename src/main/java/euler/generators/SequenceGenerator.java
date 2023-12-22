@@ -11,6 +11,12 @@ public interface SequenceGenerator {
     long next();
 
     /**
+     * Return the current number in the sequence and don't modify internal state.
+     * @throws IllegalStateException if the generator has not been run or has just been reset.
+     */
+    long peek();
+
+    /**
      * The position of the sequence as it currently stands. A value of
      * 0 indicates that no numbers have been generated.
      */

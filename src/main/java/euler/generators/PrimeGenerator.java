@@ -10,6 +10,10 @@ public final class PrimeGenerator implements SequenceGenerator {
     private long prime;
     private long count;
 
+    public PrimeGenerator() {
+        reset();
+    }
+
     @Override
     public long next() {
         count++;
@@ -18,6 +22,14 @@ public final class PrimeGenerator implements SequenceGenerator {
             next++;
         }
         prime = next;
+        return prime;
+    }
+
+    @Override
+    public long peek() {
+        if (count == 0) {
+            throw new IllegalStateException("Cannot peek before running.");
+        }
         return prime;
     }
 

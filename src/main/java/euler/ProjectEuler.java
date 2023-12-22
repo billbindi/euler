@@ -14,7 +14,8 @@ public final class ProjectEuler {
 //        System.out.println(euler3(600851475143L));
 //        System.out.println(euler4(3));
 //        System.out.println(euler5(20));
-        System.out.println(euler6(100));
+//        System.out.println(euler6(100));
+        System.out.println(euler7(10_001));
     }
 
     /**
@@ -101,5 +102,12 @@ public final class ProjectEuler {
         long sumOfSquares = LongStream.range(1, n + 1).map(l -> l * l).sum();
         long squareOfSums = (long) Math.pow(LongStream.range(1, n + 1).sum(), 2);
         return squareOfSums - sumOfSquares;
+    }
+
+    /**
+     * What is the {@code n}th prime.
+     */
+    private static long euler7(long n) {
+        return Primes.nthPrime(n);
     }
 }
