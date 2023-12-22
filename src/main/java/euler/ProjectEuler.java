@@ -10,7 +10,8 @@ public final class ProjectEuler {
 //        System.out.println(euler1(1000));
 //        System.out.println(euler2(4_000_000));
 //        System.out.println(euler3(600851475143L));
-        System.out.println(euler4(3));
+//        System.out.println(euler4(3));
+        System.out.println(euler5(20));
     }
 
     /**
@@ -67,5 +68,25 @@ public final class ProjectEuler {
             }
         }
         return max;
+    }
+
+    /**
+     * What is the smallest positive number that is evenly divisible by all of the numbers
+     * from 1 to {@code n}.
+     */
+    private static long euler5(int n) {
+        long ret = n % 2 == 0 ? n - 2 : n - 1;
+        boolean allDivide = false;
+        while (!allDivide) {
+            ret += 2; // has to be even
+            allDivide = true; // optimism
+            for (int divisor = 2; divisor <= n; divisor++) {
+                if (ret % divisor != 0) {
+                    allDivide = false;
+                    break;
+                }
+            }
+        }
+        return ret;
     }
 }
