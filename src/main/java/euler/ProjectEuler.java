@@ -1,11 +1,14 @@
 package euler;
 
+import euler.generators.CollatzGenerator;
 import euler.generators.FibonacciGenerator;
 import euler.generators.PrimeGenerator;
 import euler.generators.TriangleNumberGenerator;
 import euler.utils.Geometry;
 import euler.utils.NumberStrings;
 import euler.utils.Primes;
+import euler.utils.Sequences;
+import org.apache.commons.math3.util.CombinatoricsUtils;
 
 import java.math.BigInteger;
 import java.util.Arrays;
@@ -26,7 +29,9 @@ public final class ProjectEuler {
 //        System.out.println(euler10(2_000_000));
 //        System.out.println(euler11(Inputs.EULER_11_INPUT, 4));
 //        System.out.println(euler12(500));
-        System.out.println(euler13(Inputs.EULER_13_INPUT, 10));
+//        System.out.println(euler13(Inputs.EULER_13_INPUT, 10));
+//        System.out.println(euler14(1_000_000));
+        System.out.println(euler15(20));
     }
 
     /**
@@ -246,5 +251,28 @@ public final class ProjectEuler {
     private static String euler13(BigInteger[] numbers, int n) {
         BigInteger sum = Arrays.stream(numbers).reduce((a, b) -> a.add(b)).get();
         return sum.toString().substring(0, n);
+    }
+
+    /**
+     * Which starting number, under {@code n}, produces the longest Collatz chain?
+     */
+    private static long euler14(long n) {
+        long max = 1;
+        long maxNum = 1;
+        for (long i = 2; i < n; i++) {
+            long length = Sequences.collatzLength(i);
+            if (length > max) {
+                max = length;
+                maxNum = i;
+            }
+        }
+        return maxNum;
+    }
+
+    /**
+     * Only being able to move right and down, how many are there through an {@code n}x{@code n} grid?
+     */
+    private static long euler15(int n) {
+        return CombinatoricsUtils.binomialCoefficient(2 * n, n);
     }
 }
