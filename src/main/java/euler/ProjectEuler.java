@@ -1,6 +1,7 @@
 package euler;
 
 import euler.generators.FibonacciGenerator;
+import euler.generators.PrimeGenerator;
 import euler.utils.Geometry;
 import euler.utils.NumberStrings;
 import euler.utils.Primes;
@@ -39,7 +40,8 @@ public final class ProjectEuler {
 //        System.out.println(euler6(100));
 //        System.out.println(euler7(10_001));
 //        System.out.println(euler8(EULER_8_INPUT, 13));
-        System.out.println(euler9(1000));
+//        System.out.println(euler9(1000));
+        System.out.println(euler10(2_000_000));
     }
 
     /**
@@ -163,5 +165,19 @@ public final class ProjectEuler {
             }
         }
         throw new IllegalArgumentException("No triplet whose sum is " + n);
+    }
+
+    /**
+     * Find the sum of all the primes below {@code n}.
+     */
+    private static long euler10(long n) {
+        PrimeGenerator generator = new PrimeGenerator();
+        long sum = 0;
+        long prime = generator.next();
+        while (prime < n) {
+            sum += prime;
+            prime = generator.next();
+        }
+        return sum;
     }
 }
