@@ -2,6 +2,7 @@ package euler;
 
 import euler.generators.FibonacciGenerator;
 import euler.generators.PrimeGenerator;
+import euler.generators.TriangleNumberGenerator;
 import euler.utils.Geometry;
 import euler.utils.NumberStrings;
 import euler.utils.Primes;
@@ -21,7 +22,8 @@ public final class ProjectEuler {
 //        System.out.println(euler8(Inputs.EULER_8_INPUT, 13));
 //        System.out.println(euler9(1000));
 //        System.out.println(euler10(2_000_000));
-        System.out.println(euler11(Inputs.EULER_11_INPUT, 4));
+//        System.out.println(euler11(Inputs.EULER_11_INPUT, 4));
+        System.out.println(euler12(500));
     }
 
     /**
@@ -221,5 +223,17 @@ public final class ProjectEuler {
         }
 
         return max;
+    }
+
+    /**
+     * What is the value of the first triangle number to have over {@code n} divisors?
+     */
+    private static long euler12(int n) {
+        TriangleNumberGenerator generator = new TriangleNumberGenerator();
+        long triangle = generator.next();
+        while (Primes.numFactors(triangle) <= n) {
+            triangle = generator.next();
+        }
+        return triangle;
     }
 }
