@@ -1,11 +1,14 @@
 package euler;
 
 import euler.generators.FibonacciGenerator;
+import euler.utils.Primes;
 
 public final class ProjectEuler {
 
     public static void main(String[] args) {
+        System.out.println(euler1(1000));
         System.out.println(euler2(4_000_000));
+        System.out.println(euler3(600851475143L));
     }
 
     /**
@@ -36,5 +39,13 @@ public final class ProjectEuler {
             fib = generator.next();
         }
         return sum;
+    }
+
+    /**
+     * What is the largest prime factor of the number {@code n}.
+     */
+    private static long euler3(long n) {
+        long[] factors = Primes.primeFactors(n);
+        return factors[factors.length - 1];
     }
 }
