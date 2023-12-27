@@ -12,6 +12,7 @@ import org.apache.commons.math3.util.CombinatoricsUtils;
 
 import java.math.BigInteger;
 import java.util.Arrays;
+import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 
 public final class ProjectEuler {
@@ -32,7 +33,8 @@ public final class ProjectEuler {
 //        System.out.println(euler13(Inputs.EULER_13_INPUT, 10));
 //        System.out.println(euler14(1_000_000));
 //        System.out.println(euler15(20));
-        System.out.println(euler16(1000));
+//        System.out.println(euler16(1000));
+        System.out.println(euler17(1000));
     }
 
     /**
@@ -283,5 +285,16 @@ public final class ProjectEuler {
     private static long euler16(int n) {
         BigInteger pow = BigInteger.TWO.pow(n);
         return pow.toString().chars().mapToObj(digit -> (char)digit).mapToInt(Character::getNumericValue).sum();
+    }
+
+    /**
+     * If all the numbers from 1 to {@code n} inclusive were written out in words, how many letters would be used?
+     */
+    private static long euler17(long n) {
+        return LongStream.rangeClosed(1, n).map(k -> {
+            String str = NumberStrings.longToString(k);
+            str = str.replaceAll("\\s*", "").replaceAll("-", "");
+            return str.length();
+        }).sum();
     }
 }
