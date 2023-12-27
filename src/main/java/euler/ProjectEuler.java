@@ -31,7 +31,8 @@ public final class ProjectEuler {
 //        System.out.println(euler12(500));
 //        System.out.println(euler13(Inputs.EULER_13_INPUT, 10));
 //        System.out.println(euler14(1_000_000));
-        System.out.println(euler15(20));
+//        System.out.println(euler15(20));
+        System.out.println(euler16(1000));
     }
 
     /**
@@ -274,5 +275,13 @@ public final class ProjectEuler {
      */
     private static long euler15(int n) {
         return CombinatoricsUtils.binomialCoefficient(2 * n, n);
+    }
+
+    /**
+     * What is the sum of the digits of the number {@code 2^n}?
+     */
+    private static long euler16(int n) {
+        BigInteger pow = BigInteger.TWO.pow(n);
+        return pow.toString().chars().mapToObj(digit -> (char)digit).mapToInt(Character::getNumericValue).sum();
     }
 }
